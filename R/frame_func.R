@@ -61,7 +61,7 @@ plotproz <- function(Data, x, y) {
     ggplot2::stat_count(geom="text", ggplot2::aes(label=..count..), vjust=-0.5) +
     ggplot2::labs(y = y) +
     ggplot2::xlim(0, 100) +
-    ggplot2::scale_x_continuous(name ="Prozent", 
+    ggplot2::scale_x_continuous(name ="Prozent",
                                 seq(0,100,10)) +
     ggthemes::theme_gdocs()
 }
@@ -95,6 +95,23 @@ plot_nNA <- function(Data, x, y) {
     ggthemes::theme_gdocs()
 }
 
+ampelgrafik <- function(Data, Label) {
+  #'@import ggthemes
+  #'@import ggplot2
+  neu <- prozent5(Data)
+  data<- as.data.frame(table(neu))
+  hundret <- sum(data$Freq)
+  data$Prozentlabel <- round(data$Freq/hundret, digits = 2)
+  specie <- Label
+  # Stacked + percent
+  ggplot(data, aes(fill=forcats::fct_rev(neu), y=Freq, x=specie)) +
+    geom_bar(position="fill", width = 0.5, stat="identity", fill = (c("#C00000", "#FBBE02", "#FFFF00", "#92D050",
+                                                                      "#0B8E00")))+
+    geom_text(size = 4, position = position_fill(vjust = 0.5), aes(label=scales::percent(Prozentlabel))) +
+    ggplot2::labs(x = NULL, y = NULL ) +
+    coord_flip() +
+    scale_y_continuous(labels = scales::percent)
+}
 
 prozent <- function(df) {
   df[df == 0] <- "0-10"
