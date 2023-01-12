@@ -98,7 +98,8 @@ plot_nNA <- function(Data, x, y) {
 ampelgrafik <- function(Data, Label) {
   #'@import ggthemes
   #'@import ggplot2
-  neu <- prozent5(Data)
+  Data2 <- as.numeric(Data)
+  neu <- prozent5(Data2)
   data<- as.data.frame(table(neu))
   hundret <- sum(data$Freq)
   data$Prozentlabel <- round(data$Freq/hundret, digits = 2)
