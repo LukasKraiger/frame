@@ -95,7 +95,7 @@ plot_nNA <- function(Data, x, y) {
     ggthemes::theme_gdocs()
 }
 
-ampelgrafik <- function(Data, Label) {
+ampelgrafik_proz <- function(Data, Label) {
   #'@import ggthemes
   #'@import ggplot2
   neu <- prozent5(Data)
