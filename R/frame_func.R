@@ -113,6 +113,22 @@ ampelgrafik_proz <- function(Data, Label) {
     scale_y_continuous(labels = scales::percent)
 }
 
+ampelgrafik_likert <- function(Data, Label) {
+  neu <- as.numeric(Data)
+  data<- as.data.frame(table(neu))
+  hundret <- sum(data$Freq)
+  data$Prozentlabel <- round(data$Freq/hundret, digits = 2)
+  specie <- Label
+  # Stacked + percent
+  ggplot(data, aes(fill=forcats::fct_rev(neu), y=Freq, x=specie)) +
+    geom_bar(position="fill", width = 0.5, stat="identity", fill = (c("#C00000", "#FBBE02", "#FFFF00", "#92D050",
+                                                                               "#0B8E00")))+
+                                                                                 geom_text(size = 4, position = position_fill(vjust = 0.5), aes(label=scales::percent(Prozentlabel))) +
+    ggplot2::labs(x = NULL, y = NULL ) +
+    coord_flip() +
+    scale_y_continuous(labels = scales::percent)
+}
+
 prozent <- function(df) {
   df[df == 0] <- "0-10"
   df[df == 1] <- "0-10"
