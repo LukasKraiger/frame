@@ -339,3 +339,10 @@ prozent5 <- function(df) {
   df[df == 100] <- "81-100"
   return(df)
 }
+
+Renderengine <- function(cores, PATH) {
+  options(Ncpus = cores)
+  files <- list.files(pattern = "[.]Rmd$")
+  
+  for (f in files) rmarkdown::render(f, output_dir = PATH)
+}
