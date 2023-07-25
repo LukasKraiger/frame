@@ -5,6 +5,33 @@
 #F1 is Variable Name
 #Var is the actual Variable
 
+#' Frequency Table Generator
+#'
+#' This function generates a frequency table for a given variable.
+#'
+#' @import knitr
+#' @import kableExtra
+#'
+#' @param Var The input variable for which the frequency table is to be generated.
+#'
+#' @return A table containing the absolute frequency, cumulative frequency,
+#'   percentage, and cumulative percentage of the input variable.
+#'
+#' @examples
+#' \dontrun{
+#' # Generate a frequency table for a sample variable
+#' sample_data <- c(1, 2, 1, 3, 2, 1, 2, 3, 3)
+#' freqtable(sample_data)
+#' }
+#'
+#' @importFrom table table
+#' @importFrom stats prop.table
+#' @importFrom base unique sort cumsum
+#' @importFrom knitr kable
+#' @importFrom kableExtra add_footnote
+#' @importFrom utils round
+#'
+#' @export
 
 freqtable <- function(Var) {
   #'@import knitr
@@ -21,6 +48,26 @@ freqtable <- function(Var) {
 }
 
 
+#' Descriptive Statistics Calculator
+#'
+#' This function calculates descriptive statistics for a given numeric data vector.
+#'
+#' @import knitr
+#'
+#' @param Data A numeric vector for which descriptive statistics are to be calculated.
+#'
+#' @return A table containing the mean, standard deviation, median, and the number of non-missing values (n).
+#'
+#' @examples
+#' \dontrun{
+#' # Calculate descriptive statistics for a sample numeric vector
+#' sample_data <- c(1, 2, 3, 4, 5, NA)
+#' deskreptiv_stat(sample_data)
+#' }
+#' @importFrom base as.numeric mean sd median length na.omit round
+#' @importFrom knitr kable
+#'
+#' @export
 
 deskreptiv_stat <- function(Data) {
   #'@import knitr
@@ -35,7 +82,27 @@ deskreptiv_stat <- function(Data) {
   knitr::kable(head(d))
 }
 
-
+#' Descriptive Statistics Calculator (Transpose)
+#'
+#' This function calculates descriptive statistics for a given numeric data vector and returns
+#' the result in a transposed format as a table.
+#'
+#' @import knitr
+#'
+#' @param Data A numeric vector for which descriptive statistics are to be calculated.
+#'
+#' @return A table containing the mean, standard deviation, median, and the number of non-missing values (n).
+#'
+#' @examples
+#' \dontrun{
+#' # Calculate descriptive statistics for a sample numeric vector
+#' sample_data <- c(1, 2, 3, 4, 5, NA)
+#' deskreptiv_stat_quer(sample_data)
+#' }
+#' @importFrom base as.numeric mean sd median length na.omit round
+#' @importFrom knitr kable
+#'
+#' @export
 deskreptiv_stat_quer <- function(Data) {
   #'@import knitr
   Data_numeric <- as.numeric(Data)
@@ -51,6 +118,31 @@ deskreptiv_stat_quer <- function(Data) {
 #plot
 #data = Mentoren
 
+#' Plot Percentage Bar Chart
+#'
+#' This function creates a percentage bar chart from a given data vector, where x represents the values
+#' and y represents the variable being plotted. The function uses ggplot2 and ggthemes packages.
+#'
+#' @import ggthemes
+#' @import ggplot2
+#'
+#' @param Data A numeric vector containing the data to be plotted.
+#' @param x The name of the variable to be plotted on the x-axis.
+#' @param y The name of the variable to be plotted on the y-axis.
+#'
+#' @return A percentage bar chart representing the distribution of the data.
+#'
+#' @examples
+#' \dontrun{
+#' # Create a percentage bar chart for sample data
+#' sample_data <- c(30, 45, 15, 10)
+#' plotproz(sample_data, "Category", "Percentage")
+#' }
+#' @importFrom base na.omit
+#' @importFrom ggplot2 aes geom_bar stat_count labs xlim scale_x_continuous
+#' @importFrom ggthemes theme_gdocs
+#'
+#' @export
 plotproz <- function(Data, x, y) {
   #'@import ggthemes
   #'@import ggplot2
@@ -66,8 +158,32 @@ plotproz <- function(Data, x, y) {
     ggthemes::theme_gdocs()
 }
 
-
-plot <- function(Data,df, x, y) {
+#' Plot Bar Chart
+#'
+#' This function creates a bar chart from a given data vector and a data frame, where x and y represent the
+#' variables to be plotted on the x-axis and y-axis, respectively. The function uses ggplot2 and ggthemes packages.
+#'
+#' @import ggthemes
+#' @import ggplot2
+#'
+#' @param Data A numeric vector containing the data to be used for plotting.
+#' @param df A data frame containing the data to be used for plotting.
+#' @param x The name of the variable to be plotted on the x-axis.
+#' @param y The name of the variable to be plotted on the y-axis.
+#'
+#' @return A bar chart representing the distribution of the data.
+#'
+#' @examples
+#' \dontrun{
+#' # Create a bar chart for sample data
+#' sample_data <- c(30, 45, 15, 10)
+#' sample_df <- data.frame(Category = c("A", "B", "C", "D"), Values = sample_data)
+#' plotbar(sample_data, sample_df, "Category", "Values")
+#' }
+#' @importFrom ggplot2 aes geom_bar stat_count labs theme_gdocs
+#'
+#' @export
+plotbar <- function(Data,df, x, y) {
   #'@import ggthemes
   #'@import ggplot2
   xs <- Data
@@ -79,6 +195,35 @@ plot <- function(Data,df, x, y) {
     ggthemes::theme_gdocs()
 }
 
+#' Plot Bar Chart with NA Count
+#'
+#' This function creates a bar chart from a given data vector, where x and y represent the
+#' variables to be plotted on the x-axis and y-axis, respectively. The function omits NA values,
+#' counts the occurrences of each value, and includes a caption showing the total number of non-NA
+#' values and the number of NA values in the original data. The function uses ggplot2, ggthemes, dplyr,
+#' and magrittr packages.
+#'
+#' @import ggthemes
+#' @import ggplot2
+#' @import dplyr
+#' @import magrittr
+#'
+#' @param Data A numeric vector containing the data to be used for plotting.
+#' @param x The name of the variable to be plotted on the x-axis.
+#' @param y The name of the variable to be plotted on the y-axis.
+#'
+#' @return A bar chart representing the distribution of the data without NA values, along with a caption
+#'   showing the number of non-NA values and NA values in the original data.
+#'
+#' @examples
+#' \dontrun{
+#' # Create a bar chart with NA count for sample data
+#' sample_data <- c(30, 45, NA, 10, NA, 20)
+#' plot_nNA(sample_data, "Values", "Frequency")
+#' }
+#' @importFrom ggplot2 aes geom_bar stat_count labs theme_gdocs
+#'
+#' @export
 plot_nNA <- function(Data, x, y) {
   #'@import ggthemes
   #'@import ggplot2
@@ -95,6 +240,29 @@ plot_nNA <- function(Data, x, y) {
     ggthemes::theme_gdocs()
 }
 
+#' Traffic Light Chart with Percentages
+#'
+#' This function creates a traffic light chart with percentages from a given data vector and label.
+#' The function first calculates percentages using the 'prozent5' function (assuming it's defined elsewhere),
+#' then creates the chart using ggplot2 and ggthemes packages.
+#'
+#' @import ggthemes
+#' @import ggplot2
+#'
+#' @param Data A numeric vector containing the data to be used for plotting.
+#' @param Label The label for the x-axis.
+#'
+#' @return A traffic light chart with percentages showing the distribution of the data.
+#'
+#' @examples
+#' \dontrun{
+#' # Create a traffic light chart with percentages for sample data
+#' sample_data <- c(1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5)
+#' ampelgrafik_proz(sample_data, "Category")
+#' }
+#' @importFrom ggplot2 aes geom_bar geom_text coord_flip scale_y_continuous labs
+#'
+#' @export
 ampelgrafik_proz <- function(Data, Label) {
   #'@import ggthemes
   #'@import ggplot2
@@ -113,6 +281,29 @@ ampelgrafik_proz <- function(Data, Label) {
     scale_y_continuous(labels = scales::percent)
 }
 
+#' Likert-style Traffic Light Chart with Percentages
+#'
+#' This function creates a likert-style traffic light chart with percentages from a given data vector and label.
+#' The function first converts the data to numeric, calculates percentages, and then creates the chart using ggplot2
+#' and ggthemes packages.
+#'
+#' @import ggthemes
+#' @import ggplot2
+#'
+#' @param Data A numeric vector containing the data to be used for plotting.
+#' @param Label The label for the x-axis.
+#'
+#' @return A likert-style traffic light chart with percentages showing the distribution of the data.
+#'
+#' @examples
+#' \dontrun{
+#' # Create a likert-style traffic light chart with percentages for sample data
+#' sample_data <- c(1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5)
+#' ampelgrafik_likert(sample_data, "Category")
+#' }
+#' @importFrom ggplot2 aes geom_bar geom_text coord_flip scale_y_continuous labs
+#'
+#' @export
 ampelgrafik_likert <- function(Data, Label) {
   neu <- as.numeric(Data)
   data<- as.data.frame(table(neu))
@@ -129,7 +320,35 @@ ampelgrafik_likert <- function(Data, Label) {
     scale_y_continuous(labels = scales::percent)
 }
 
+#' Categorize Values into Percentage Ranges
+#'
+#' This function takes a numeric vector and categorizes its values into percentage ranges.
+#'
+#' @param df A numeric vector or data frame containing the values to be categorized.
+#'
+#' @return A data frame with an additional column "categories" that contains the corresponding percentage range for each value.
+#'
+#' @details The function uses the `cut()` function to categorize the values into ten percentage ranges: 0-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90, and 91-100.
+#'
+#' @examples
+#' \dontrun{
+#' df <- c(10, 35, 50, 75, 90)
+#' categorized_df <- prozent(df)
+#' }
+#' @importFrom stats cut
+#'
+#' @export
+
 prozent <- function(df) {
+  breaks <- c(-Inf, seq(0, 100, 10), Inf)
+  labels <- c("0-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-100")
+
+  df$categories <- cut(df, breaks = breaks, labels = labels, right = FALSE)
+  return(df)
+}
+
+
+.prozent_legacy <- function(df) {
   df[df == 0] <- "0-10"
   df[df == 1] <- "0-10"
   df[df == 2] <- "0-10"
@@ -232,10 +451,38 @@ prozent <- function(df) {
   df[df == 99] <- "91-100"
   df[df == 100] <- "91-100"
   return(df)
+
+}
+
+#' Categorize Values into Percentage Ranges
+#'
+#' This function takes a numeric vector and categorizes its values into percentage ranges.
+#'
+#' @param df A numeric vector or data frame containing the values to be categorized.
+#'
+#' @return A data frame with an additional column "categories" that contains the corresponding percentage range for each value.
+#'
+#' @details The function uses the `cut()` function to categorize the values into five percentage ranges: 0-20, 21-40, 41-60, 61-80, and 81-100.
+#'
+#' @examples
+#' \dontrun{
+#' df <- c(10, 35, 50, 75, 90)
+#' categorized_df <- prozent5(df)
+#' }
+#' @importFrom stats cut
+#'
+#' @export
+prozent5 <- function(df) {
+  breaks <- c(-Inf, 0:5, 21:40, 41:60, 61:80, Inf)
+  labels <- c("0-20", "21-40", "41-60", "61-80", "81-100")
+
+  df$categories <- cut(df, breaks = breaks, labels = labels, right = FALSE)
+  return(df)
 }
 
 
-prozent5 <- function(df) {
+
+.prozent5_legacy <- function(df) {
   df[df == 0] <- "0-20"
   df[df == 1] <- "0-20"
   df[df == 2] <- "0-20"
@@ -340,9 +587,46 @@ prozent5 <- function(df) {
   return(df)
 }
 
+#' Render R Markdown Files in Parallel
+#'
+#' This function renders all R Markdown files in the specified \code{PATH} using
+#' parallel processing with the given number of \code{cores}.
+#'
+#' @param cores Number of CPU cores to be used for parallel rendering.
+#' @param PATH The path to the directory containing the R Markdown files to be rendered.
+#'
+#' @details This function uses parallel processing to render R Markdown files in
+#' the specified \code{PATH}. Each R Markdown file will be rendered using a
+#' separate core, which can significantly speed up the rendering process if
+#' multiple cores are available.
+#'
+#' @examples
+#' # Render R Markdown files in the "documents" directory using 4 cores
+#' # Renderengine(4, "documents")
+#'
+#' @import parallel
+#' @import rmarkdown
+#'
+#' @export
+#'
+#' @seealso \code{\link{makeCluster}}, \code{\link{parLapply}}
+#'
+#' @keywords R Markdown parallel rendering
 Renderengine <- function(cores, PATH) {
-  options(Ncpus = cores)
   files <- list.files(pattern = "[.]Rmd$")
-  
-  for (f in files) rmarkdown::render(f, output_dir = PATH)
+
+  # Create a cluster using the specified number of cores
+  cl <- makeCluster(cores)
+  on.exit(stopCluster(cl))  # Make sure to stop the cluster even if an error occurs
+
+  # Function to render the R Markdown file
+  render_file <- function(file) {
+    tryCatch(
+      rmarkdown::render(file, output_dir = PATH),
+      error = function(e) cat("Error rendering", file, "\n", conditionMessage(e), "\n")
+    )
+  }
+
+  # Use parallel processing to render the files
+  parLapply(cl, files, render_file)
 }

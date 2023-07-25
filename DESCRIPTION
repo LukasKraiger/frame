@@ -6,6 +6,15 @@ Author: Lukas Kraiger
 Maintainer: Lukas Kraiger <lukas.kraiger@icloud.com>
 Description: A couple useful functions for basic statistic reports in 
             rmarkdown files.
+Imports:
+    dplyr,
+    ggplot2,
+    ggthemes,
+    knitr,
+    magrittr,
+    rmarkdown,
+    xtable
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.2.3

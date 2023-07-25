@@ -1,6 +1,6 @@
 #CopyCat
 
-Variable_Copy <- function(df) {
+.Variable_Copy <- function(df) {
   var <- paste0("df$",df)
   line <- c(paste0(" `r ",var, "%>% attr('label')`"),cat("\n"), paste0("freqtable(", var, ")"),
                     paste0("#deskreptiv_stat(", var, ")\n", paste0("#deskreptiv_stat_quer(", var, ")\n"),
@@ -10,7 +10,7 @@ Variable_Copy <- function(df) {
 }
 
 
-frame <- function() {
+.frame <- function() {
   file.remove("Report.R", "Report.Rmd", "Report.md", "Report.html")
   df_place<- file.choose()
   df<- sjlabelled::read_spss(df_place)
