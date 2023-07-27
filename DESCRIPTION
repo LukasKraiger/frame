@@ -1,11 +1,7 @@
 Package: frame
 Type: Package
 Title: a framework for basic statistic workflows
-<<<<<<< Updated upstream
-Version: 0.1.0
-=======
 Version: 0.1.5
->>>>>>> Stashed changes
 Author: Lukas Kraiger
 Maintainer: Lukas Kraiger <lukas.kraiger@icloud.com>
 Description: A couple useful functions for basic statistic reports in 
@@ -17,14 +13,10 @@ Imports:
     knitr,
     magrittr,
     rmarkdown,
-<<<<<<< Updated upstream
-    xtable
-=======
     xtable,
     forcats,
     scales,
     vctrs
->>>>>>> Stashed changes
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
