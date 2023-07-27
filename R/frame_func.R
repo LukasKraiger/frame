@@ -31,7 +31,6 @@
 #'
 #' @export
 
-freqtable <- function(Var) {
   #'@import knitr
 #' @importFrom vctrs table
 #' @importFrom stats prop.table
