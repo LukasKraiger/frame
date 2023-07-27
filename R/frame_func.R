@@ -634,5 +634,3 @@ Renderengine <- function(cores, PATH) {
 
   # Use parallel processing to render the files
   parLapply(cl, files, render_file)
-
-  }
