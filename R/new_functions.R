@@ -22,10 +22,6 @@
 #'}
 #' @export
 #'
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 generate_apa_table <- function(..., caption = "Table", label = "tab", na_rm = TRUE) {
   means <- sapply(list(...), function(x) mean(x, na.rm = na_rm))
   sds <- sapply(list(...), function(x) sd(x, na.rm = na_rm))
@@ -69,10 +65,6 @@ generate_apa_table <- function(..., caption = "Table", label = "tab", na_rm = TR
 #' }
 #'
 #' @export
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 calculate_mean_sd <- function(..., na.rm = FALSE) {
   means <- sapply(list(...), function(x) round(mean(x, na.rm = na.rm), 2))
   sds <- sapply(list(...), function(x) round(sd(x, na.rm = na.rm), 2))
@@ -116,24 +108,6 @@ process_file_and_save_info <- function(file_path, output_folder = "output_folder
   writeLines(output_text, output_path)
 }
 
-
-<<<<<<< Updated upstream
-
-process_file_and_save_info <- function(file_path, output_folder = "output_folder") {
-  # Get the file name without the path
-  file_name <- basename(file_path)
-
-  # Print the file name
-  cat("File Name:", file_name, "\n")
-
-  # Save the file name to a text file
-  output_text <- paste("File Name:", file_name, "\n")
-  output_path <- file.path(output_folder, "file_name.txt")
-  writeLines(output_text, output_path)
-}
-
-=======
->>>>>>> Stashed changes
 #' Reverse the polarity of Likert scale items
 #'
 #' This function takes a vector of Likert scale items and reverses their scoring
@@ -155,16 +129,7 @@ reverse_likert_polarity <- function(x, max_score) {
   reversed_items <- max_score - x + 1
   return(reversed_items)
 }
-
-
-<<<<<<< Updated upstream
-reverse_likert_polarity <- function(x, max_score) {
-  reversed_items <- max_score - x + 1
-  return(reversed_items)
-}
-
-=======
->>>>>>> Stashed changes
+ 
 #' Generate an RMarkdown file with descriptive statistics for all variables in a dataframe.
 #'
 #' This function scans the input dataframe and calculates specific descriptive statistics
@@ -191,14 +156,7 @@ reverse_likert_polarity <- function(x, max_score) {
 #'
 #' @export
 generate_descriptive_stats_rmd <- function(data, output_file) {
-<<<<<<< Updated upstream
-  # Function implementation here...
-}
 
-
-generate_descriptive_stats_rmd <- function(data, output_file) {
-=======
->>>>>>> Stashed changes
   # Check if the input data is a dataframe
   if (!is.data.frame(data)) {
     stop("Input data must be a dataframe.")
@@ -276,15 +234,6 @@ generate_descriptive_stats_rmd <- function(data, output_file) {
 #'
 #' @importFrom stats scale
 #' @export
-<<<<<<< Updated upstream
-scale_multiple_variables <- function(data, var_names, scale_type = "mean") {
-  # Function implementation (see above)
-}
-
-
-
-=======
->>>>>>> Stashed changes
 # Function to scale multiple variables in a data frame based on sum or mean
 scale_multiple_variables <- function(data, var_names, scale_type = "mean") {
   if (scale_type == "sum") {
@@ -314,12 +263,3 @@ scale_multiple_variables <- function(data, var_names, scale_type = "mean") {
   return(data)
 }
 
-<<<<<<< Updated upstream
-#' @importFrom ggplot2 ggplot aes geom_bar geom_text coord_flip scale_y_continuous
-#' @importFrom xtable xtable
-#' @importFrom parallel makeCluster stopCluster
-#' @importFrom snow parLapply
-
-
-=======
->>>>>>> Stashed changes
