@@ -10,7 +10,10 @@
 #' This function generates a frequency table for a given variable.
 #'
 #' @import knitr
+<<<<<<< Updated upstream
 #' @import kableExtra
+=======
+>>>>>>> Stashed changes
 #'
 #' @param Var The input variable for which the frequency table is to be generated.
 #'
@@ -24,6 +27,7 @@
 #' freqtable(sample_data)
 #' }
 #'
+<<<<<<< Updated upstream
 #' @importFrom table table
 #' @importFrom stats prop.table
 #' @importFrom base unique sort cumsum
@@ -36,6 +40,18 @@
 freqtable <- function(Var) {
   #'@import knitr
   #'@import kableExtra
+=======
+#' @importFrom vctrs table
+#' @importFrom stats prop.table
+#' @importFrom base unique sort cumsum
+#' @importFrom knitr kable
+
+#' @importFrom utils round
+#'
+#' @export
+freqtable <- function(Var) {
+  #'@import knitr
+>>>>>>> Stashed changes
   abs.Haeufigkeit <- table(Var)
   Prozent <- round(prop.table(abs.Haeufigkeit)*100, digits = 2)
   Skala <- unique(sort(Var))
@@ -43,8 +59,12 @@ freqtable <- function(Var) {
   kum.Haeufigkeit <- cumsum(abs.Haeufigkeit)
   tab <- cbind(Skala, abs.Haeufigkeit, kum.Haeufigkeit,Prozent,kum.Prozent)
   #rownames(tab) <- row
+<<<<<<< Updated upstream
   knitr::kable(tab) #|>
   # kableExtra::add_footnote(foot, notation = "alphabet")
+=======
+  knitr::kable(tab)
+>>>>>>> Stashed changes
 }
 
 
@@ -68,7 +88,10 @@ freqtable <- function(Var) {
 #' @importFrom knitr kable
 #'
 #' @export
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 deskreptiv_stat <- function(Data) {
   #'@import knitr
   Data_numeric <- as.numeric(Data)
@@ -338,7 +361,10 @@ ampelgrafik_likert <- function(Data, Label) {
 #' @importFrom stats cut
 #'
 #' @export
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 prozent <- function(df) {
   breaks <- c(-Inf, seq(0, 100, 10), Inf)
   labels <- c("0-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-100")

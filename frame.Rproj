@@ -18,4 +18,7 @@ StripTrailingWhitespace: Yes
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
+<<<<<<< Updated upstream
 PackageCheckArgs: --as-cran
+=======
+>>>>>>> Stashed changes
