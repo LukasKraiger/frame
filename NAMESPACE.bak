@@ -1,7 +1,0 @@
-exportPattern("^[[:alpha:]]+")
-importFrom("stats", "median", "na.omit", "sd")
-importFrom("utils", "head")
-importFrom("stats", "quantile")
-
-
-
