@@ -26,10 +26,8 @@ for each variable. For numeric variables, it calculates the summary statistics
 }
 \examples{
 \dontrun{
-# Assuming you have a dataframe called "my_data"
-and want to create a file called "descriptive_stats.Rmd":
+# Assuming you have a dataframe called "my_data" and want to create a file called "descriptive_stats.Rmd":
 generate_descriptive_stats_rmd(data = my_data, output_file = "descriptive_stats.Rmd")
 }
 
 }
-
