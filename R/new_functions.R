@@ -136,7 +136,7 @@ reverse_likert_polarity <- function(x, max_score) {
 #' for each variable. For numeric variables, it calculates the summary statistics
 #' (mean, median, standard deviation, quartiles) using \code{summary()}, \code{mean()},
 #' \code{median()}, \code{sd()}, and \code{quantile()}. For categorical variables
-#' (factors), it calculates frequency counts using \code{table()}.
+#' (factors).
 #'
 #' @param data The input dataframe for which descriptive statistics need to be generated.
 #'             The dataframe should contain a mix of numeric and categorical variables.

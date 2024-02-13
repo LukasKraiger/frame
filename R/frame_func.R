@@ -23,7 +23,7 @@
 #' freqtable(sample_data)
 #' }
 #'
-#' @importFrom table table
+#' 
 #' @importFrom stats prop.table
 #' @importFrom base unique sort cumsum
 #' @importFrom knitr kable
@@ -32,7 +32,7 @@
 #' @export
 
   #'@import knitr
-#' @importFrom vctrs table
+#' @importFrom vctrs 
 #' @importFrom stats prop.table
 #' @importFrom base unique sort cumsum
 #' @importFrom knitr kable
