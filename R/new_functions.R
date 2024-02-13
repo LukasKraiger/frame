@@ -263,3 +263,32 @@ scale_multiple_variables <- function(data, var_names, scale_type = "mean") {
   return(data)
 }
 
+#' Compute mean and standard deviation in APA format
+#'
+#' This function computes the mean and standard deviation of a numeric vector and
+#' prints the result in APA compliant format for Markdown.
+#'
+#' @param data A numeric vector.
+#'
+#' @return Prints the mean and standard deviation in APA compliant format.
+#' @export
+#'
+#' @examples
+#' compute_mean_sd_apa(c(1, 2, 3, 4, 5))
+#'
+#' @importFrom base mean sd
+#'
+#' @importFrom stats na.omit
+#'
+#' @keywords internal
+compute_mean_sd_apa <- function(data) {
+  data <- na.omit(data)
+  if(length(data) > 0) {
+    cat(sprintf("**Mean:** %.2f, **SD:** %.2f", mean(data), sd(data)))
+  } else {
+    cat("No valid data available.")
+  }
+}
+
+
+
