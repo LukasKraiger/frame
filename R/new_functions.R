@@ -280,7 +280,7 @@ scale_multiple_variables <- function(data, var_names, scale_type = "mean") {
 #'
 #' @importFrom stats na.omit
 #'
-#' @keywords internal
+#' 
 summary_stats_apa <- function(data) {
   data <- na.omit(data)
   if(length(data) > 0) {
