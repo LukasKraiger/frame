@@ -53,7 +53,41 @@ freqtable <- function(Var) {
   knitr::kable(tab)
 }
 
+#' Frequency Table Generator (new)
+#'
+#' This function generates a frequency table for a given variable.
+#'
+#' @import knitr
+#'
+#' @param Var The input variable for which the frequency table is to be generated.
+#'
+#' @return A table containing the absolute frequency, cumulative frequency,
+#'   percentage, and cumulative percentage of the input variable.
+#'
+#' @examples
+#' \dontrun{
+#' # Generate a frequency table for a sample variable
+#' sample_data <- c(1, 2, 1, 3, 2, 1, 2, 3, 3)
+#' freqtable_new(sample_data)
+#' }
+#'
+#' 
+#' @importFrom stats prop.table
+#' @importFrom base unique sort cumsum
+#' @importFrom knitr kable
+#' @importFrom utils round
+#'
+#' @export
 
+  #'@import knitr
+#' @importFrom vctrs 
+#' @importFrom stats prop.table
+#' @importFrom base unique sort cumsum
+#' @importFrom knitr kable
+
+#' @importFrom utils round
+#'
+#' @export
 
 freqtable_new <- function(Var, VarNames) {
   #'@import knitr
