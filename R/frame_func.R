@@ -40,9 +40,9 @@
 #' @importFrom utils round
 #'
 #' @export
-freqtable <- function(Var) {
+freqtable <- function(Var, VarNames) {
   #'@import knitr
-  abs.Haeufigkeit <- table(Var, VarNames)
+  abs.Haeufigkeit <- table(Var)
   Prozent <- round(prop.table(abs.Haeufigkeit)*100, digits = 2)
   Skala <- unique(sort(Var))
   names(Skala) <- VarNames
