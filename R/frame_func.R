@@ -53,6 +53,8 @@ freqtable <- function(Var) {
   knitr::kable(tab)
 }
 
+
+
 freqtable_new <- function(Var, VarNames) {
   #'@import knitr
   abs.Haeufigkeit <- table(Var)
