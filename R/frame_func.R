@@ -42,9 +42,10 @@
 #' @export
 freqtable <- function(Var) {
   #'@import knitr
-  abs.Haeufigkeit <- table(Var)
+  abs.Haeufigkeit <- table(Var, VarNames)
   Prozent <- round(prop.table(abs.Haeufigkeit)*100, digits = 2)
   Skala <- unique(sort(Var))
+  names(Skala) <- VarNames
   kum.Prozent <- round((cumsum(Prozent)/sum(Prozent))*100, digits = 2)
   kum.Haeufigkeit <- cumsum(abs.Haeufigkeit)
   tab <- cbind(Skala, abs.Haeufigkeit, kum.Haeufigkeit,Prozent,kum.Prozent)
