@@ -40,7 +40,20 @@
 #' @importFrom utils round
 #'
 #' @export
-freqtable <- function(Var, VarNames) {
+freqtable <- function(Var) {
+  #'@import knitr
+  abs.Haeufigkeit <- table(Var)
+  Prozent <- round(prop.table(abs.Haeufigkeit)*100, digits = 2)
+  Skala <- unique(sort(Var))
+  kum.Prozent <- round((cumsum(Prozent)/sum(Prozent))*100, digits = 2)
+  kum.Haeufigkeit <- cumsum(abs.Haeufigkeit)
+  tab <- cbind(Skala, abs.Haeufigkeit, kum.Haeufigkeit,Prozent,kum.Prozent)
+  #rownames(tab) <- row
+  knitr::kable(tab)
+  knitr::kable(tab)
+}
+
+freqtable_new <- function(Var, VarNames) {
   #'@import knitr
   abs.Haeufigkeit <- table(Var)
   Prozent <- round(prop.table(abs.Haeufigkeit)*100, digits = 2)
@@ -53,6 +66,7 @@ freqtable <- function(Var, VarNames) {
   knitr::kable(tab)
   knitr::kable(tab)
 }
+
 
 
 #' Descriptive Statistics Calculator
