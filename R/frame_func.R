@@ -320,21 +320,35 @@ plot_nNA <- function(Data, x, y) {
 #'
 #' @export
 ampelgrafik_proz <- function(Data, Label) {
-  #'@import ggthemes
-  #'@import ggplot2
+  # Wende die vereinfachte prozent5-Funktion an
   neu <- prozent5(Data)
-  data<- as.data.frame(table(neu))
+  
+  # Erstelle eine Tabelle mit Häufigkeiten
+  data <- as.data.frame(table(neu))
   hundret <- sum(data$Freq)
-  data$Prozentlabel <- round(data$Freq/hundret, digits = 2)
-  specie <- Label
-  # Stacked + percent
-  ggplot(data, aes(fill=forcats::fct_rev(neu), y=Freq, x=specie)) +
-    geom_bar(position="fill", width = 0.5, stat="identity", fill = (c("#C00000", "#FBBE02", "#FFFF00", "#92D050",
-                                                                      "#0B8E00")))+
-    geom_text(size = 4, position = position_fill(vjust = 0.5), aes(label=scales::percent(Prozentlabel))) +
-    ggplot2::labs(x = NULL, y = NULL ) +
+  
+  # Berechne die Prozentwerte
+  data$Prozentlabel <- round(data$Freq / hundret, digits = 2)
+  
+  # Farben für die Balken
+  bar_colors <- c("#C00000", "#FBBE02", "#FFFF00", "#92D050", "#0B8E00")
+  
+  # Schriftfarben für die Textlabels
+  text_colors <- c("white", "black", "black", "black", "white")  # Weiß für Rot und Dunkelgrün
+  
+  # Erstelle das Diagramm
+  ggplot(data, aes(fill = forcats::fct_rev(neu), y = Freq, x = Label)) +
+    geom_bar(position = "fill", width = 0.2, stat = "identity", fill = bar_colors) +  # Balkenbreite reduziert
+    geom_text(
+      size = 4, 
+      position = position_fill(vjust = 0.5), 
+      aes(label = scales::percent(Prozentlabel), color = forcats::fct_rev(neu))
+    ) +
+    scale_color_manual(values = text_colors) +  # Schriftfarben anpassen
+    ggplot2::labs(x = NULL, y = NULL) +
     coord_flip() +
-    scale_y_continuous(labels = scales::percent)
+    scale_y_continuous(labels = scales::percent) +
+    theme(legend.position = "none")  # Legende ausblenden, falls nicht benötigt
 }
 
 #' Likert-style Traffic Light Chart with Percentages
@@ -527,13 +541,18 @@ prozent <- function(df) {
 #' @importFrom stats cut
 #'
 #' @export
-prozent5 <- function(df) {
-  breaks <- c(-Inf, 0:5, 21:40, 41:60, 61:80, Inf)
-  labels <- c("0-20", "21-40", "41-60", "61-80", "81-100")
-
-  df$categories <- cut(df, breaks = breaks, labels = labels, right = FALSE)
-  return(df)
+prozent5 <- function(data) {
+  # Definiere die Intervalle (breaks) und die zugehörigen Labels
+  breaks <- c(0, 20, 40, 60, 80, 100)  # 5 Intervalle
+  labels <- c("0-20", "21-40", "41-60", "61-80", "81-100")  # 5 Labels
+  
+  # Teile die Daten in Kategorien ein
+  categories <- cut(data, breaks = breaks, labels = labels, right = TRUE, include.lowest = TRUE)
+  
+  # Gib die Kategorien zurück
+  return(categories)
 }
+
 
 
 
@@ -685,4 +704,3 @@ Renderengine <- function(cores, PATH) {
   # Use parallel processing to render the files
   parLapply(cl, files, render_file)
 }
-
